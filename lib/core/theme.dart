@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ThemeData theme = ThemeData(
+  fontFamily: 'Raleway',
   colorScheme: const ColorScheme.light(
     inversePrimary: Colors.white,
     primary: Color(0xFF171717),
@@ -40,6 +41,7 @@ ThemeData theme = ThemeData(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: Colors.black,
+      fontFamily: 'Raleway',
     ),
     labelMedium: TextStyle(
       fontSize: 18,
@@ -54,7 +56,7 @@ ThemeData theme = ThemeData(
     centerTitle: true,
     titleTextStyle: TextStyle(
       fontSize: 20,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.w600,
       color: Colors.black,
     ),
   ),

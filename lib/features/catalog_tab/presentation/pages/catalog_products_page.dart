@@ -6,7 +6,8 @@ import 'package:shop_app/features/catalog_tab/presentation/filter_provider.dart'
 import 'package:shop_app/features/catalog_tab/presentation/pages/catalog_filters_page.dart';
 
 class CatalogProductsPage extends StatelessWidget {
-  CatalogProductsPage({super.key});
+  CatalogProductsPage({super.key, required this.openFilers});
+  VoidCallback openFilers;
   String title = 'любой кожи';
   @override
   Widget build(BuildContext context) {
@@ -15,18 +16,21 @@ class CatalogProductsPage extends StatelessWidget {
     final filterProvider = FilterProvider.of(context);
     switch (filterProvider.filter.skinType) {
       case 'Жирная':
-        title = 'жирной кожи';
+        title = 'Средства \nдля жирной кожи';
         break;
       case 'Комбинированная':
-        title = 'комбинированной кожи';
+        title = 'Средства \nдля комбинированной кожи';
       case 'Сухая':
-        title = 'сухой кожи';
+        title = 'Средства \nдля сухой кожи';
         break;
       case 'Нормальная':
-        title = 'нормальной кожи';
+        title = 'Средства \nдля нормальной кожи';
+        break;
+      case 'Любая':
+        title = 'Средства \nдля любой кожи';
         break;
       default:
-        title = 'любой кожи';
+        title = 'Все типы кожи';
     }
     List<ProductModel> filteredList;
 
@@ -73,7 +77,7 @@ class CatalogProductsPage extends StatelessWidget {
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    "Средства \nдля $title",
+                    "$title",
                     style: textTheme.titleLarge,
                   ),
                 ),
@@ -85,10 +89,7 @@ class CatalogProductsPage extends StatelessWidget {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => CatalogFiltersPage()));
-                      },
+                      onPressed: openFilers,
                       icon: Icon(Icons.tune),
                     ),
                   ],
@@ -140,7 +141,7 @@ class CatalogProductsPage extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: Color(0xFFF4F4F4),
                           borderRadius: BorderRadius.circular(11)),
-                      child: Center(child: Text('Регенерация')),
+                      child: const Center(child: Text('Регенерация')),
                     ),
                     SizedBox(
                       width: 12,

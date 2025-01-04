@@ -11,4 +11,8 @@ class ProductFilter {
     this.productType,
     this.effect,
   });
+  @override
+  String toString() {
+    return '$skinType  $skinProblem  $cosmeticsLine $productType $effect';
+  }
 }
