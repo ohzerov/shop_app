@@ -25,15 +25,22 @@ class _MainWrapperState extends State<MainWrapper> {
         },
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
-        items: const [
+        items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded), label: 'Главная'),
+              icon: Image.asset(
+                width: 24,
+                'assets//icons/home_icon.png',
+              ),
+              label: "Главная"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search_rounded), label: 'Каталог'),
+              icon: Image.asset(width: 24, 'assets/icons/search_icon.png'),
+              label: 'Каталог'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_bag_rounded), label: 'Корзина'),
+              icon: Image.asset(width: 24, 'assets/icons/cart_icon.png'),
+              label: 'Корзина'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded), label: 'Профиль'),
+              icon: Image.asset(width: 24, 'assets/icons/user_icon.png'),
+              label: 'Профиль'),
         ],
       ),
       body: SafeArea(

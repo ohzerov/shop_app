@@ -13,7 +13,7 @@ final List<ProductModel> products = [
     cosmeticsLine: "Christina",
   ),
   ProductModel(
-    name: "Illustrious Mask",
+    name: "Unstress Total\nSerenity Serum",
     imgUrl: "assets/product_images/mask.png",
     price: 2090,
     disocuntPrice: 1800,

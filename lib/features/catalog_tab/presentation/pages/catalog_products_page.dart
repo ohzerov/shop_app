@@ -170,55 +170,49 @@ class CatalogProductsPage extends StatelessWidget {
               child: GridView.builder(
                 shrinkWrap: true,
                 itemCount: filteredList.length,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  crossAxisSpacing: 24,
-                  mainAxisSpacing: 24,
-                  childAspectRatio: 0.6,
+                  crossAxisSpacing: 18,
+                  mainAxisSpacing: MediaQuery.sizeOf(context).height / 200,
+                  mainAxisExtent: MediaQuery.sizeOf(context).height / 2.7,
                 ),
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-                        width: double.infinity,
-                        height: 190,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Color(0xFFF4F4F4),
+                  return Container(
+                    child: Column(
+                      spacing: 4,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: MediaQuery.sizeOf(context).height / 4,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Theme.of(context).colorScheme.surface),
+                          child: Align(
+                            child: SizedBox(
+                              width: 120,
+                              child: Image.asset(
+                                filteredList[index].imgUrl,
+                              ),
+                            ),
+                          ),
                         ),
-                        child: Image.asset(
-                          filteredList[index].imgUrl,
-                          fit: BoxFit.contain,
+                        Text(
+                          filteredList[index].productType,
+                          style: TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.w500),
                         ),
-                      ),
-                      Column(
-                        spacing: 6,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            width: double.infinity,
-                          ),
-                          Text(
-                            filteredList[index].productType,
-                            style: TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            filteredList[index].name,
-                            style: TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.w500),
-                          ),
-                          Text(
-                            "${filteredList[index].price.round().toString()} ₽",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      )
-                    ],
+                        Text(
+                          filteredList[index].name,
+                          style: TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w600),
+                        ),
+                        Text(
+                          "${filteredList[index].price.round().toString()} ₽",
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700),
+                        ),
+                      ],
+                    ),
                   );
                 },
               ),

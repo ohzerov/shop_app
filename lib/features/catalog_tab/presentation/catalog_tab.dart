@@ -25,7 +25,7 @@ class CatalogTab extends StatelessWidget {
               final filterProvider = FilterProvider.of(context);
               switch (settings.name) {
                 case '/':
-                  return const CatalogMainPage();
+                  return CatalogMainPage();
                 case '/catalog_details':
                   return const CatalogCategoryDetailsPage();
                 case '/catalog_products':
@@ -33,7 +33,7 @@ class CatalogTab extends StatelessWidget {
                     openFilters(filterProvider);
                   });
                 default:
-                  return const CatalogMainPage();
+                  return CatalogMainPage();
               }
             },
           );

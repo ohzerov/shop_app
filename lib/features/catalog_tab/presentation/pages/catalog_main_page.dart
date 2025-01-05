@@ -1,72 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/features/catalog_tab/widgets/catalog_search_widget.dart';
+import 'package:shop_app/features/catalog_tab/widgets/catalog_test_widget.dart';
 
 class CatalogMainPage extends StatelessWidget {
-  const CatalogMainPage({super.key});
+  void goToDetails(BuildContext context) {
+    Navigator.of(context).pushNamed('/catalog_details');
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            const TextField(
-              decoration: InputDecoration(
-                  prefix: Icon(Icons.search_outlined), hintText: 'Поиск'),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        CatalogSearchWidget(),
+        Expanded(
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, top: 39, bottom: 51),
+            child: Column(
+              spacing: 16,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context), text: 'Назначение'),
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context),
+                    text: 'Тип средства'),
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context), text: 'Тип кожи'),
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context),
+                    text: 'Линия косметики'),
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context), text: 'Наборы'),
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context), text: 'Акции'),
+                CatalogMainPageButton(
+                    onPressed: () => goToDetails(context),
+                    text: 'Консультация с\nКосметологом'),
+              ],
             ),
-            SizedBox(
-              height: 40,
-            ),
-            SizedBox(
-              width: MediaQuery.sizeOf(context).width / 2.2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CatalogButton(function: () {}, buttonText: 'Назначение'),
-                  CatalogButton(function: () {}, buttonText: 'Тип средства'),
-                  CatalogButton(
-                      function: () {
-                        Navigator.of(context).pushNamed('/catalog_details');
-                      },
-                      buttonText: 'Тип кожи'),
-                  CatalogButton(function: () {}, buttonText: 'Линия косметики'),
-                  CatalogButton(function: () {}, buttonText: 'Наборы'),
-                  CatalogButton(function: () {}, buttonText: 'Акции'),
-                  CatalogButton(
-                      function: () {},
-                      buttonText: 'Консультация с кометологом'),
-                ],
-              ),
-            ),
-            Spacer(),
-            Container(
-              color: Colors.red,
-              width: double.infinity,
-              height: 200,
-            )
-          ],
+          ),
         ),
-      ),
+        CatalogTestWidget()
+      ],
     );
   }
 }
 
-class CatalogButton extends StatelessWidget {
-  CatalogButton({super.key, required this.function, required this.buttonText});
-
-  VoidCallback function;
-  String buttonText;
-
+class CatalogMainPageButton extends StatelessWidget {
+  const CatalogMainPageButton(
+      {super.key, required this.onPressed, required this.text});
+  final VoidCallback onPressed;
+  final String text;
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-        onPressed: function,
+    return GestureDetector(
+        onTap: onPressed,
         child: Text(
-          buttonText,
-          style: TextStyle(fontSize: 20, color: Colors.black),
+          text,
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
         ));
   }
 }

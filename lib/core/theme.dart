@@ -60,4 +60,13 @@ ThemeData theme = ThemeData(
       color: Colors.black,
     ),
   ),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Colors.white,
+    selectedItemColor: Colors.black,
+    unselectedItemColor: Color(0xFF70757F),
+    selectedLabelStyle: TextStyle(
+        fontWeight: FontWeight.w500, fontSize: 10, color: Colors.black),
+    unselectedLabelStyle: TextStyle(
+        fontSize: 10, fontWeight: FontWeight.w500, color: Color(0xFF70757F)),
+  ),
 );
