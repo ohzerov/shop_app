@@ -9,6 +9,7 @@ ThemeData theme = ThemeData(
     secondary: Color(0xFF2B2B2B),
     tertiary: Color(0xFF70757F),
     surface: Color(0xFFF4F4F4),
+    onTertiary: Color(0XFFD9D9D9),
   ),
   scaffoldBackgroundColor: const Color(0xFFFFFFFF),
   textTheme: const TextTheme(

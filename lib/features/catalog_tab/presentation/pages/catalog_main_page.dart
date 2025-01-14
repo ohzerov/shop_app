@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/features/catalog_tab/widgets/catalog_search_widget.dart';
-import 'package:shop_app/features/catalog_tab/widgets/catalog_test_widget.dart';
+import 'package:shop_app/core/utils/size_config.dart';
+import 'package:shop_app/features/catalog_tab/presentation/widgets/catalog_search_widget.dart';
+import 'package:shop_app/features/catalog_tab/presentation/widgets/catalog_test_widget.dart';
 
 class CatalogMainPage extends StatelessWidget {
   void goToDetails(BuildContext context) {
@@ -15,11 +16,10 @@ class CatalogMainPage extends StatelessWidget {
         CatalogSearchWidget(),
         Expanded(
           child: Padding(
-            padding:
-                const EdgeInsets.only(left: 16, right: 16, top: 39, bottom: 51),
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 39),
             child: Column(
-              spacing: 16,
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              spacing: SizeConfig.height(16),
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 CatalogMainPageButton(
@@ -58,9 +58,21 @@ class CatalogMainPageButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: onPressed,
-        child: Text(
-          text,
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+        child: Row(
+          spacing: 4,
+          children: [
+            Text(
+              text,
+              style: TextStyle(
+                  fontSize: SizeConfig.textSize(20),
+                  fontWeight: FontWeight.w600),
+            ),
+            text == 'Акции'
+                ? SizedBox(
+                    width: 25,
+                    child: Image.asset('assets/icons/icon_discount.png'))
+                : SizedBox.shrink()
+          ],
         ));
   }
 }

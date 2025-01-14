@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/features/catalog_tab/presentation/filter_provider.dart';
-import 'package:shop_app/features/catalog_tab/presentation/filter_provider_widget.dart';
+import 'package:shop_app/features/catalog_tab/presentation/provider/filter_provider.dart';
+import 'package:shop_app/features/catalog_tab/presentation/provider/filter_provider_widget.dart';
 import 'package:shop_app/features/catalog_tab/presentation/pages/catalog_category_details_page.dart';
 import 'package:shop_app/features/catalog_tab/presentation/pages/catalog_filters_page.dart';
 import 'package:shop_app/features/catalog_tab/presentation/pages/catalog_main_page.dart';

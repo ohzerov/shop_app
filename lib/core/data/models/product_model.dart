@@ -8,7 +8,11 @@ class ProductModel {
   String skinProblem;
   String effect;
   String cosmeticsLine;
+  bool isDiscount;
+  bool isDouble;
   ProductModel({
+    required this.isDiscount,
+    required this.isDouble,
     required this.name,
     required this.imgUrl,
     required this.price,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/core/utils/size_config.dart';
 
 class CatalogTestWidget extends StatelessWidget {
   const CatalogTestWidget({super.key});
@@ -6,7 +7,7 @@ class CatalogTestWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 170,
+      height: SizeConfig.height(170),
       child: Stack(
         fit: StackFit.loose,
         alignment: Alignment.centerLeft,
@@ -27,33 +28,38 @@ class CatalogTestWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 24),
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 shape: BoxShape.circle,
                 gradient: RadialGradient(radius: 0.5, colors: [
-                  const Color.fromARGB(255, 255, 255, 255),
-                  const Color.fromARGB(40, 255, 255, 255)
+                  Color.fromARGB(255, 255, 255, 255),
+                  Color.fromARGB(40, 255, 255, 255)
                 ]),
               ),
-              height: 170,
-              width: 170,
+              height: SizeConfig.height(170),
+              width: SizeConfig.width(170),
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(vertical: 24, horizontal: 24),
+            padding: EdgeInsets.symmetric(
+                vertical: SizeConfig.height(10), horizontal: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Text(
                   'Составим схему идеального \nдомашнего ухода',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w700),
+                  style: TextStyle(
+                      fontSize: SizeConfig.textSize(16),
+                      fontWeight: FontWeight.w700),
                 ),
                 Text(
                   '10 вопросов о вашей коже',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                      fontSize: SizeConfig.textSize(14),
+                      fontWeight: FontWeight.w500),
                 ),
                 SizedBox(
-                  height: 40,
+                  height: SizeConfig.height(40),
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
@@ -62,10 +68,9 @@ class CatalogTestWidget extends StatelessWidget {
                     onPressed: () {},
                     child: Text(
                       'Пройти тест',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: Colors.white),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          color: Colors.white,
+                          fontSize: SizeConfig.textSize(12)),
                     ),
                   ),
                 ),

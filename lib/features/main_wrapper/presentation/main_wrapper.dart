@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:shop_app/features/cart_tab/cart_tab.dart';
 import 'package:shop_app/features/catalog_tab/presentation/catalog_tab.dart';
-import 'package:shop_app/features/home_tab/home_tab.dart';
+import 'package:shop_app/features/home_tab/presentation/home_tab.dart';
 import 'package:shop_app/features/profile_tab/profile_tab.dart';
 
 class MainWrapper extends StatefulWidget {
@@ -43,16 +43,14 @@ class _MainWrapperState extends State<MainWrapper> {
               label: 'Профиль'),
         ],
       ),
-      body: SafeArea(
-        child: IndexedStack(
-          index: _selectedIndex,
-          children: [
-            HomeTab(),
-            CatalogTab(),
-            CartTab(),
-            ProfileTab(),
-          ],
-        ),
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: [
+          HomeTab(),
+          SafeArea(child: CatalogTab()),
+          CartTab(),
+          ProfileTab(),
+        ],
       ),
     );
   }

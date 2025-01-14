@@ -2,13 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:shop_app/core/data/models/product_model.dart';
 import 'package:shop_app/core/data/products_list.dart';
 import 'package:shop_app/core/theme.dart';
-import 'package:shop_app/features/catalog_tab/presentation/filter_provider.dart';
-import 'package:shop_app/features/catalog_tab/presentation/pages/catalog_filters_page.dart';
+import 'package:shop_app/features/catalog_tab/filter.dart';
+import 'package:shop_app/features/catalog_tab/presentation/provider/filter_provider.dart';
 
-class CatalogProductsPage extends StatelessWidget {
+class CatalogProductsPage extends StatefulWidget {
   CatalogProductsPage({super.key, required this.openFilers});
   VoidCallback openFilers;
+
+  @override
+  State<CatalogProductsPage> createState() => _CatalogProductsPageState();
+}
+
+class _CatalogProductsPageState extends State<CatalogProductsPage> {
+  int? activeIndex;
   String title = 'любой кожи';
+  List<String> filterButtons = [
+    'Увлажнение',
+    'Очищение',
+    'Регенерация',
+    'Насыщение'
+  ];
   @override
   Widget build(BuildContext context) {
     final textTheme = theme.textTheme;
@@ -89,7 +102,7 @@ class CatalogProductsPage extends StatelessWidget {
                     ),
                     Spacer(),
                     IconButton(
-                      onPressed: openFilers,
+                      onPressed: widget.openFilers,
                       icon: Icon(Icons.tune),
                     ),
                   ],
@@ -102,61 +115,26 @@ class CatalogProductsPage extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 44,
-                child: ListView(
+                child: ListView.builder(
+                  itemCount: filterButtons.length,
+                  itemBuilder: (context, index) {
+                    double paddingLeft = index == 0 ? 16 : 0;
+                    double paddingRight =
+                        index == filterButtons.length - 1 ? 16 : 12;
+                    return Padding(
+                        padding: EdgeInsets.only(
+                            left: paddingLeft, right: paddingRight),
+                        child: CatalogProductsFilterButton(
+                            btnText: filterButtons[index],
+                            isActive: activeIndex == index,
+                            onTap: () {
+                              activeIndex = index;
+                              setState(() {});
+                              FilterProvider.of(context).updateFilter(
+                                  ProductFilter(effect: filterButtons[index]));
+                            }));
+                  },
                   scrollDirection: Axis.horizontal,
-                  children: [
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Container(
-                      width: 120,
-                      decoration: BoxDecoration(
-                          color: colorTheme.surface,
-                          borderRadius: BorderRadius.circular(11)),
-                      child: Center(
-                          child: Text(
-                        'Очищение',
-                        style: textTheme.bodyMedium,
-                      )),
-                    ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Container(
-                      width: 120,
-                      decoration: BoxDecoration(
-                          color: Color(0xFF171717),
-                          borderRadius: BorderRadius.circular(11)),
-                      child: Center(
-                          child: Text(
-                        'Увлажнение',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                    ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Container(
-                      width: 120,
-                      decoration: BoxDecoration(
-                          color: Color(0xFFF4F4F4),
-                          borderRadius: BorderRadius.circular(11)),
-                      child: const Center(child: Text('Регенерация')),
-                    ),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Container(
-                      width: 120,
-                      decoration: BoxDecoration(
-                          color: Color(0xFFF4F4F4),
-                          borderRadius: BorderRadius.circular(11)),
-                      child: Center(child: Text('Насыщение')),
-                    ),
-                    SizedBox(
-                      width: 16,
-                    ),
-                  ],
                 ),
               ),
               const SizedBox(
@@ -219,6 +197,36 @@ class CatalogProductsPage extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CatalogProductsFilterButton extends StatelessWidget {
+  CatalogProductsFilterButton(
+      {super.key,
+      required this.btnText,
+      required this.isActive,
+      required this.onTap});
+  final String btnText;
+  VoidCallback onTap;
+
+  bool isActive;
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 120,
+        decoration: BoxDecoration(
+            color: isActive ? Color(0xFF171717) : Color(0xFFF4F4F4),
+            borderRadius: BorderRadius.circular(11)),
+        child: Center(
+          child: Text(
+            btnText,
+            style: TextStyle(color: isActive ? Colors.white : Colors.black),
+          ),
+        ),
       ),
     );
   }

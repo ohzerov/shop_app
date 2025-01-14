@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/features/catalog_tab/filter.dart';
-import 'package:shop_app/features/catalog_tab/presentation/filter_provider.dart';
+import 'package:shop_app/features/catalog_tab/presentation/provider/filter_provider.dart';
 
 class CatalogCategoryDetailsPage extends StatelessWidget {
   const CatalogCategoryDetailsPage({super.key});
